@@ -1,4 +1,4 @@
-# Group 23 Mid-Term Project Review
+# Mid-Term Project Review
 
 ## Updated Baseline Results
 
