@@ -3,7 +3,6 @@ import streamlit as st
 import os
 import google.generativeai as genai
 
-# Load environment variables
 load_dotenv()
 
 # Configure API key
@@ -13,7 +12,6 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 model = genai.GenerativeModel("gemini-pro")
 chat = model.start_chat(history=[])
 
-# Function to get Gemini response
 def get_gemini_response(question):
     response = chat.send_message(question, stream=True)
     return response
@@ -40,11 +38,9 @@ with st.form("input_form"):
     input_question = st.text_input("Input: ", key="input", placeholder="Type your question here...",
                                    value=st.session_state['input_value'])
 
-    # Capture form submission event
     form_submitted = st.form_submit_button("Ask the question")
 
     if form_submitted:
-        # Get Gemini response
         response = get_gemini_response(input_question)
 
         # Display Gemini response
