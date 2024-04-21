@@ -10,12 +10,10 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 
-# Initialize session state for chat history if it doesn't exist
 if 'chat_history' not in st.session_state:
     st.session_state['chat_history'] = []
 
 load_dotenv()
-# os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def get_pdf_text(pdf_docs):
@@ -88,10 +86,10 @@ def main():
     pdf_docs = st.file_uploader("Click the button below to upload PDF Files", accept_multiple_files=True, key="fileuploader")
 
     if st.button("Process"):
-        with st.spinner("Processing..."): # user friendly message.
-            raw_text = get_pdf_text(pdf_docs) # get the pdf text
-            text_chunks = get_text_chunks(raw_text) # get the text chunks
-            get_vector_store(text_chunks) # create vector store
+        with st.spinner("Processing..."):
+            raw_text = get_pdf_text(pdf_docs)
+            text_chunks = get_text_chunks(raw_text) 
+            get_vector_store(text_chunks)
             st.success("Done")
 
    
